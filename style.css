@@ -22,10 +22,6 @@ html {
     overflow-x: hidden;
 }
 
-.body {
-    width: 100vw;
-}
-
 a {
     text-decoration: none;
     color: inherit;
@@ -44,16 +40,24 @@ header {
     padding: 0 4rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     box-shadow: 0px 2px 2px #e0e0e0;
     position: relative;
 }
 
 header .mobile-buttons {
     font-size: 5rem;
-    position: absolute;
-    top: 25px;
-    right: 30px;
+    height: 2.5rem;
     display: none;
+    cursor: pointer;
+    z-index: 999;
+    padding: .5rem;
+    border-radius: 50%;
+    transition: 0.3s all linear;
+
+    &:hover {
+        background-color: #F0F0F0;
+    }
 }
 
 .nav-logo {
@@ -63,7 +67,7 @@ header .mobile-buttons {
 }
 
 nav {
-    width: calc(100vw - 5rem);
+    width: calc(100% - 5rem);
     display: flex;
     align-items: center;
 }
@@ -166,15 +170,18 @@ nav {
 .section {
     width: 100%;
     margin-top: 3.2rem;
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     background-color: var(--bg);
 }
 
-.section img {
-    width: 67.4rem;
-    /* width: 60rem; */
-    /* height: var(--height); */
+.section .image {
+    overflow: hidden;
+}
+
+.section .image img {
+    max-width: 100%;
 }
 
 .section .text-container {
@@ -273,15 +280,16 @@ footer .foot-section2 {
     padding: 2.4rem 4rem 0 4rem;
     box-shadow: 0px -2px 2px #e0e0e0;
     display: flex;
+    gap: 3.2rem;
 }
 
 footer .foot-section2 div {
     width: 19rem;
 }
 
-footer .foot-section2 div:not(:first-child) {
+/* footer .foot-section2 div:not(:first-child) {
     margin-left: 3.2rem;
-}
+} */
 
 footer .foot-section2 div h2 {
     margin-bottom: 3.4rem;
@@ -294,6 +302,7 @@ footer .foot-section2 div ul li {
     margin-bottom: .8rem;
     padding: .8rem 0;
     color: rgba(0, 0, 0, 0.58);
+    font-size: 1.5rem;
 }
 
 footer .foot-section3 {
@@ -332,6 +341,7 @@ footer .foot-section3 ul.links {
 footer .foot-section3 ul.links li {
     padding-right: 2.4rem;
     color: rgba(0, 0, 0, 0.87);
+    font-size: 1.4rem;
 }
 
 footer .foot-section3 ul.links li:not(:first-child) {
@@ -346,71 +356,21 @@ footer .foot-section3 p {
 }
 
 
+/** Media Quries **/
 
+@media screen and (max-width: 920px) {
 
-
-
-@media screen and (max-width: 2560px) {
-    html {
-        font-size: 100%;
+    body {
+        width: 100vw;
     }
-}
-
-@media screen and (max-width: 1850px) {
-    html {
-        font-size: 80%;
-    }
-}
-
-@media screen and (max-width: 1500px) {
-    html {
-        font-size: 70%;
-    }
-}
-
-@media screen and (max-width: 1300px) {
-    html {
-        font-size: 60%;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    html {
-        font-size: 45%;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    html {
-        font-size: 35%;
-    }
-    .section img {
-        width: 60rem;
-    }
-}
-
-@media screen and (max-width: 664px) {
-    html {
-        font-size: 31%;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    /* html {
-        font-size: 35%;
-    } */
 
     header {
         height: 70px;
     }
-    
+
     header .mobile-buttons {
         display: block;
     }
-
-    /* header .mobile-buttons > i.fa-xmark {
-        display: none;
-    } */
 
     .nav-logo {
         width: 40px;
@@ -419,29 +379,31 @@ footer .foot-section3 p {
 
     nav {
         width: calc(100vw - 84px);
-        height: calc(100vh - 9rem);
         height: 100vh;
         background-color: #fff;
         align-items: flex-start;
         justify-content: unset;
         z-index: 0;
-        position: absolute;
+        position: fixed;
         top: 80px;
         right: 0;
-        transform: translateX(-100%);
+        transform: translateX(100%);
         opacity: 0;
         pointer-events: none;
+        transition: 0.3s all linear;
     }
 
     nav .nav-text {
-        margin: 50px 0 32px 0;
-        padding: 32px ;
+        padding: 50px 32px;
         align-items: start;
-        justify-content: start;
+        justify-content: unset;
         flex-direction: column;
+        gap: 0;
+        height: 100%;
     }
 
     .nav-links {
+        padding: 4rem 0;
         align-items: baseline;
         flex-direction: column;
     }
@@ -456,29 +418,28 @@ footer .foot-section3 p {
 
     .nav-buttons {
         width: 100%;
-        padding-top: 6rem;
+        padding-top: 4rem;
         border-top: 1px solid rgba(0, 0, 0, 0.247);
         position: relative;
-        top: 18rem;
         align-items: start;
         justify-content: start;
         flex-direction: column-reverse;
         flex-wrap: wrap;
         gap: 10px;
     }
-    
+
     .nav-buttons a {
         height: 32px;
         font-size: 14px;
         font-weight: 600;
         margin-right: 52px;
     }
-    
+
     .nav-buttons a img {
         width: 15px;
         margin-right: 10px;
     }
-    
+
     .nav-buttons button {
         padding: 8px 15px;
         font-size: 14px;
@@ -486,36 +447,39 @@ footer .foot-section3 p {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     .section {
-        flex-direction: column;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        width: 100vw;
     }
 
-    .section img {
-        width: 100%;
+    .section .image {
+        grid-row-start: 1;
+        grid-row-end: 2;
     }
 
     .section .text-container {
-        height: 30rem;
+        width: 100%;
         padding: 30px 0;
     }
+
+    footer .foot-section1 p {
+        width: 100%;
+        padding: 0 2rem;
+    }
+
+    footer .foot-section2 {
+        display: none;
+    }
+
+    footer .foot-section3 ul.links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    footer .foot-section3 ul.links li:not(:first-child) {
+        font-size: 1.5rem;
+        padding: 0;
+        border: none;
+    }
 }
-
-
-/* @media screen and (max-width: 400px) {
-    nav { padding: 0 2rem; }
-    .nav-links { width: 26rem; }
-    .nav-links a { margin-right: 1rem; }
-    .nav-buttons a { margin-right: 2rem; }
-    .nav-buttons button { padding: .8rem 1rem; }
-} */

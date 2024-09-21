@@ -1,22 +1,20 @@
-const navIcons = document.querySelector('.mobile-buttons');
+const mobileButtons = document.querySelector('.mobile-buttons');
 const navbar = document.querySelector('nav');
 
 
+mobileButtons.addEventListener('click', () => {
+    const isOpen = mobileButtons.src.includes('bars')
 
-navIcons.addEventListener('click', () => {
-    navIcons.classList.toggle('fa-bars', 'fa-xmark');
-    console.log(navIcons.classList);
+    if (isOpen) {
+        mobileButtons.src = './svg/x.svg'
+        navbar.style.opacity = '1';
+        navbar.style.transform = 'translateX(0)'
+        navbar.style.pointerEvents = 'all'
+        
+    } else {
+        mobileButtons.src = './svg/bars.svg'
+        navbar.style.opacity = '0';
+        navbar.style.transform = 'translateX(100%)'
+        navbar.style.pointerEvents = 'none'
+    }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
